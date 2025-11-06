@@ -3,6 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { NotFound } from './NotFound';
 import { Root } from './root';
 import { routes } from './routes';
+import { ROUTER_BASE } from '@/constants';
 
 const Error = () => <div>Oops! Something went wrong.</div>;
 
@@ -27,7 +28,10 @@ const router = createBrowserRouter(
       {generateRoutes(routes)}
       <Route path="*" element={<NotFound />} errorElement={<Error />} />
     </Route>
-  )
+  ),
+  {
+    basename: ROUTER_BASE,
+  }
 );
 
 export const Router = () => <RouterProvider router={router} />;
