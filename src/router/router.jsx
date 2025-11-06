@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router';
+import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import { NotFound } from './NotFound';
 import { Root } from './root';
 import { routes } from './routes';
