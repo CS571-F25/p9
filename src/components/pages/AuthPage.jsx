@@ -1,7 +1,7 @@
 import { LoginBlock, SignupBlock } from '@/components/auth';
 import { useState } from 'react';
 
-export function Login() {
+export function AuthPage() {
   const [isSigningUp, setIsSigningUp] = useState(false);
   return (
     <div className="stretch-provider items-center justify-center">

@@ -1,4 +1,4 @@
-import { Home, Explore, Login } from '@/components';
+import { Home, Explore, AuthPage } from '@/components';
 import { ROUTES } from '@/constants';
 
 export const routes = [
@@ -19,7 +19,7 @@ export const routes = [
   },
   {
     name: 'Login',
-    path: ROUTES.LOGIN,
-    element: <Login />,
+    path: ROUTES.AUTH,
+    element: <AuthPage />,
   }
 ];
