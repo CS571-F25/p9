@@ -1,34 +1,20 @@
-import { useState } from 'react'
-import reactLogo from '@/assets/react.svg'
-import viteLogo from '/vite.svg'
+import { LinkButton } from '@/components/LinkButton'
+import globePNG from '@/assets/globe.png'
 import '@/App.css'
 
 export function Home() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <h1>Globe Getter</h1>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="stretch-provider flex-row items-center justify-center gap-10 text-white">
+      <img className="align-middle h-[650px] w-auto" src={globePNG} />
+      <div className="flex flex-col items-center gap-4 max-w-[50%]">
+        <div className="flex flex-row items-center justify-center">
+        <h1 className="m-2">Globe Getter</h1>
+        </div>
+        <span>
+          Explore the world through an interactive 3D globe, where you can rotate, zoom, and click on countries to instantly access key facts and cultural highlights. Search or browse nations via a side panel, seamlessly linking data with the globe for a visually engaging experience. Discover new places, learn about their geography, economy, and culture, all through an intuitive and dynamic interface.
+        </span>
+        <LinkButton url="/explore" label="Get Started" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }

@@ -1,5 +1,5 @@
-import { Home, Page2 } from '@/components';
-import { ROUTES } from '@/constants/routes';
+import { Home, Explore, Login } from '@/components';
+import { ROUTES } from '@/constants';
 
 export const routes = [
   {
@@ -7,9 +7,19 @@ export const routes = [
     path: ROUTES.ROOT,
     element: <Home />,
   },
+  // {
+  //   name: 'About',
+  //   path: ROUTES.ABOUT,
+  //   element: <p>ABOUT</p>,
+  // },
   {
-    name: 'Page2',
-    path: ROUTES.PAGE2,
-    element: <Page2 />,
+    name: 'Explore',
+    path: ROUTES.EXPLORE,
+    element: <Explore />,
+  },
+  {
+    name: 'Login',
+    path: ROUTES.LOGIN,
+    element: <Login />,
   }
 ];

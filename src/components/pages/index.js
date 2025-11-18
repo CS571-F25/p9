@@ -1,2 +1,3 @@
 export * from './Home';
-export * from './Page2';
+export * from './Explore';
+export * from './Login';
