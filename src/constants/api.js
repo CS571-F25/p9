@@ -1,0 +1,1 @@
+export const COUNTRY_INFO_API_BASE = 'https://restcountries.com/v3.1/alpha';

@@ -5,7 +5,7 @@ import '@/App.css'
 export function Home() {
   return (
     <div className="stretch-provider flex-row items-center justify-center gap-10 text-white">
-      <img className="align-middle h-[650px] w-auto" src={globePNG} />
+      <img className="align-middle h-[650px] w-auto" src={globePNG} alt="globeIMG" />
       <div className="flex flex-col items-center gap-4 max-w-[50%]">
         <div className="flex flex-row items-center justify-center">
         <h1 className="m-2">Globe Getter</h1>
