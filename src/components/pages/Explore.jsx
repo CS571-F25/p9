@@ -1,8 +1,11 @@
-import { useRef, useState } from 'react';
-import { InfoPanel, InteractiveGlobe, SearchPanel } from '../Explore';
+import { useRef, useState, useContext } from 'react';
+import { InfoPanel, InteractiveGlobe, SearchPanel, NoAuthPanel } from '../Explore';
+import { LoginContext } from '../../context';
 import cn from 'classnames';
 
 export function Explore() {
+  const { loginState } = useContext(LoginContext);
+
   const globeRef = useRef();
   const [selectedCountry, setSelectedCountry] = useState('');
 
@@ -15,13 +18,13 @@ export function Explore() {
         </div>
         <InteractiveGlobe globeRef={globeRef} />
         <div className="flex pointer-events-none">
-          <div className="!min-w-[200px] w-1/5">
+          <div className="!min-w-[200px] w-[20vw]">
             <SearchPanel globeRef={globeRef} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
           </div>
         </div>
       </div>
       <div className={cn("absolute top-0 right-0 z-1 h-full !w-[300px]", selectedCountry ? "block" : "hidden")}>
-        <InfoPanel iso3={selectedCountry} onClose={() => setSelectedCountry('')} />
+        {loginState ? <InfoPanel iso3={selectedCountry} onClose={() => setSelectedCountry('')} /> : <NoAuthPanel countryName={selectedCountry} iso3={selectedCountry} />}
       </div>
     </div>
   );

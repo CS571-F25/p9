@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Spinner } from "react-bootstrap";
 import { COUNTRY_INFO_API_BASE } from "../../constants";
+import { SearchButton } from "../SearchButton";
 
 export function InfoPanel({ iso3, onClose }) {
   const [data, setData] = useState(null);
@@ -59,6 +60,8 @@ export function InfoPanel({ iso3, onClose }) {
           <p><strong>Continent:</strong> {data.continent}</p>
           <p><strong>Area:</strong> {data.area.toLocaleString()} km²</p>
           <p><strong>Population:</strong> {data.population.toLocaleString()}</p>
+          <br />
+          <SearchButton queryText={`All About ${data.name}`} />
         </Card.Body>
       </Card>
     </div>
