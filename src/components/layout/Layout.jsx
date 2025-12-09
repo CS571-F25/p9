@@ -29,17 +29,7 @@ export function Layout({ children }) {
           </Navbar>
         </div>
 
-        {/* <div className="flex h-min max-h-[100px] w-full flex-col items-center justify-center bg-gray-300">
-          <h1 className="leading-normal">Layout Banner</h1>
-        </div> */}
-
         <main className="stretch-provider gap-5">{children}</main>
-
-        {/* <div className="flex h-min w-full flex-col items-center justify-center bg-gray-400">
-          <footer>
-            <h1>Layout Footer</h1>
-          </footer>
-        </div> */}
       </div>
     </div>
   );

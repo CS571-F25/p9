@@ -41,7 +41,8 @@ export function LoginBlock({ setIsSigningUp, active = true }) {
       )}
     >
     <div className="bg-[linear-gradient(135deg,#0a0f44_0%,#12268d_50%,#1e3ad0_100%)] p-8 w-full h-full flex flex-col justify-center text-white">
-      <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+      <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+      <hr className="border-2 border-white w-[80%] self-center opacity-75" />
       <form onSubmit={handleSubmit} className="space-y-4">
         <AuthInput id="login-email" state={email} setState={setEmail} label="Email" type="email" />
         <AuthInput id="login-password" state={password} setState={setPassword} label="Password" type="password" />

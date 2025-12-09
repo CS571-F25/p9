@@ -32,7 +32,11 @@ export function SearchPanel({ globeRef, selectedCountry, setSelectedCountry }) {
 
   return <Card className="pointer-events-none p-2 !bg-[#88ddff]">
     <Card.Body className="p-0">
+    <label htmlFor="country-search" className="sr-only">
+      Search for a country
+    </label>
     <input 
+      id="country-search"
       className="mb-3 w-full p-2 border border-gray-300 rounded pointer-events-auto"
       type="text"
       placeholder="Search for a country..."
@@ -52,5 +56,5 @@ export function SearchPanel({ globeRef, selectedCountry, setSelectedCountry }) {
         }}
       />
     </Card.Body>
-  </Card>
+  </Card>;
 }

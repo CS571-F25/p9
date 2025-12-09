@@ -10,6 +10,7 @@ export function Home() {
         <div className="flex flex-row items-center justify-center">
         <h1 className="m-2">Globe Getter</h1>
         </div>
+        <hr className="border-4 border-black w-[80%]" />
         <span>
           Explore the world through an interactive 3D globe, where you can rotate, zoom, and click on countries to instantly access key facts and cultural highlights. Search or browse nations via a side panel, seamlessly linking data with the globe for a visually engaging experience. Discover new places, learn about their geography, economy, and culture, all through an intuitive and dynamic interface.
         </span>

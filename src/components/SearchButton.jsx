@@ -10,12 +10,18 @@ function SearchButton({ queryText }) {
 
   return (
     <div>
-      {!queryText && <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter search text"
-      />}
+      {!queryText && <>
+        <label htmlFor="search-button" className="sr-only">
+          Search Button
+        </label>
+        <input
+          id="search-button"
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Enter search text"
+        />
+      </>}
       <LinkButton url={searchUrl} label={label} />
     </div>
   );

@@ -13,7 +13,7 @@ export function Explore() {
     <div className="stretch-provider relative flex-row">
       <div className="bg-black text-white z-1 ml-4">
         <div className="pointer-events-none">
-          <h1>Explore Page</h1>
+          <h1>Explore</h1>
           <p>Use your mouse to interact with the globe below to explore countries!</p>
         </div>
         <InteractiveGlobe globeRef={globeRef} />
