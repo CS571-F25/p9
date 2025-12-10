@@ -41,7 +41,7 @@ export function SignupBlock({ setIsSigningUp, active = true }) {
 
   return <div
       className={cn(
-        "absolute inset-0 transition-all duration-500 ease-in-out", active ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0 pointer-events-none"
+        "absolute inset-0 transition-all duration-500 ease-in-out", active ? "translate-x-0 opacity-100 z-1" : "-translate-x-full opacity-0 !pointer-events-none"
       )}
     >
     <div className="bg-[linear-gradient(145deg,#1a0b33_0%,#3a1460_40%,#4e1ace_100%)] text-white p-8 h-full w-full flex flex-col justify-center">
