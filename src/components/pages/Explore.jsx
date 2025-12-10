@@ -1,13 +1,33 @@
-import { useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { InfoPanel, InteractiveGlobe, SearchPanel, NoAuthPanel } from '../Explore';
 import { LoginContext } from '../../context';
+import { useCountryCenter } from '../../hooks';
+import { INITIAL_COUNTRY_QUERY_KEY } from '../../constants';
 import cn from 'classnames';
 
 export function Explore() {
   const { loginState } = useContext(LoginContext);
+  
+  const [searchParams] = useSearchParams();
+  const initialCountry = searchParams.get(INITIAL_COUNTRY_QUERY_KEY);
+
+  const { data: initialCenter } = useCountryCenter(initialCountry);
 
   const globeRef = useRef();
-  const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState(initialCountry || '');
+
+  const moveTo = useCallback((lat, lng, time=1000, altitude=2) => {
+    if (!globeRef || !globeRef.current) return;
+
+    globeRef.current.pointOfView({ lat, lng, altitude }, time);
+  }, [globeRef]);
+
+  useEffect(() => {
+    if (!initialCenter) return;
+
+    moveTo(initialCenter.lat, initialCenter.lng);
+  }, [initialCenter, moveTo]);
 
   return (
     <div className="stretch-provider relative flex-row">
@@ -19,7 +39,7 @@ export function Explore() {
         <InteractiveGlobe globeRef={globeRef} />
         <div className="flex pointer-events-none">
           <div className="!min-w-[200px] w-[20vw]">
-            <SearchPanel globeRef={globeRef} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
+            <SearchPanel globeRef={globeRef} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} moveTo={moveTo} />
           </div>
         </div>
       </div>

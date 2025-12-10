@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 import { AuthInput } from './AuthInput';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext, AuthUsersContext } from '../../context';
+import { SearchPanel } from '../Explore';
+import { INITIAL_COUNTRY_QUERY_KEY } from '../../constants';
 import cn from 'classnames';
 
 export function SignupBlock({ setIsSigningUp, active = true }) {
@@ -14,6 +16,7 @@ export function SignupBlock({ setIsSigningUp, active = true }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [initialCountry, setInitialCountry] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +36,7 @@ export function SignupBlock({ setIsSigningUp, active = true }) {
     login(email);
 
     alert("Signup successful!");
-    navigate('/explore');
+    navigate(`/explore?${INITIAL_COUNTRY_QUERY_KEY}=${initialCountry}`);
   };
 
   return <div
@@ -48,6 +51,10 @@ export function SignupBlock({ setIsSigningUp, active = true }) {
         <AuthInput id="signup-email" state={email} setState={setEmail} label="Email" type="email" />
         <AuthInput id="signup-password" state={password} setState={setPassword} label="Password" type="password" />
         <AuthInput id="signup-repeat-password" state={repeatPassword} setState={setRepeatPassword} label="Repeat Password" type="password" />
+        <label className="block !-mb-2" htmlFor="initial-country">Country of Origin (optional)</label>
+        <div id="initial-country">
+          <SearchPanel selectedCountry={initialCountry} setSelectedCountry={setInitialCountry} />
+        </div>
         <Button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"

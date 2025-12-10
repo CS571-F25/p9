@@ -1,28 +1,30 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { useCountryCenter } from '../../hooks';
 import { CountryList } from './CountryList';
 import { countries } from '../../constants';
 
-export function SearchPanel({ globeRef, selectedCountry, setSelectedCountry }) {
+export function SearchPanel({ selectedCountry, setSelectedCountry, moveTo = () => {} }) {
   const [search, setSearch] = useState("");
-  const { data: countryCenter, isLoading, isError } = useCountryCenter(selectedCountry);
+  const [doFilter, setDoFilter] = useState(true);
+  const { data: countryCenter } = useCountryCenter(selectedCountry);
   const [showList, setShowList] = useState(false);
+
+  const setCountry = (country) => {
+    setSearch(country.name);
+    setSelectedCountry(country.iso);
+  }
 
   const sortedCountries = useMemo(() => {
     return [...countries].sort((a, b) => a.name.localeCompare(b.name));
   }, []);
 
   const filteredCountries = useMemo(() => {
-    if (!search.trim()) return sortedCountries;
+    if (!doFilter || !search.trim()) return sortedCountries;
     return sortedCountries.filter((country) =>
       country.name.toLowerCase().includes(search.toLowerCase())
     );
-  }, [sortedCountries, search]);
-
-  const moveTo = useCallback((lat, lng, time=1000, altitude=2) => {
-    globeRef.current.pointOfView({ lat, lng, altitude }, time);
-  }, [globeRef]);
+  }, [sortedCountries, search, doFilter]);
 
   useEffect(() => {
     if (countryCenter) {
@@ -41,7 +43,11 @@ export function SearchPanel({ globeRef, selectedCountry, setSelectedCountry }) {
       type="text"
       placeholder="Search for a country..."
       value={search}
-      onChange={(e) => setSearch(e.target.value)}
+      onChange={(e) => setSearch(prev => {
+        if (!prev && e.target.value) setShowList(true);
+        setDoFilter(true);
+        return e.target.value;
+      })}
     />
       <Button onClick={() => setShowList(!showList)} className="pointer-events-auto">
         {showList ? "Hide" : "Show"} Countries
@@ -50,9 +56,10 @@ export function SearchPanel({ globeRef, selectedCountry, setSelectedCountry }) {
         countries={filteredCountries}
         active={showList}
         selectedCountry={selectedCountry}
-        onClick={(iso) => {
-          setSelectedCountry(iso);
+        onClick={(country) => {
+          setCountry(country);
           setShowList(false);
+          setDoFilter(false);
         }}
       />
     </Card.Body>

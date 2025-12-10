@@ -12,7 +12,7 @@ export function CountryList({ countries, active=true, selectedCountry, onClick }
           "w-full text-left mb-1 p-2 rounded cursor-pointer",
           selectedCountry === country.iso ? "text-white" : "bg-white text-black"
         )}
-        onClick={() => onClick(country.iso)}
+        onClick={() => onClick(country)}
       >
         {country.name}
       </Button>
